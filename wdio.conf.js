@@ -27,8 +27,8 @@ export const config = {
   services: [
     [
       join(
-        process.env.NODE_PATH,
-        "@wopee-io/wopee.wdio/build/index.js"
+        process.cwd(),
+        "node_modules/@wopee-io/wopee.wdio/build/index.js"
       ),
       {
         screenshotValidation: {
@@ -36,8 +36,8 @@ export const config = {
           apiKey: process.env.WOPEE_API_KEY,
           projectUuid: process.env.WOPEE_PROJECT_UUID,
           // branchName: process.env.WOPEE_BRANCH_NAME,
-          // pixelToPixelDiffTolerance: process.env.WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE,
-          // enableSoftAssert: process.env.WOPEE_ENABLE_SOFT_ASSERT,
+          pixelToPixelDiffTolerance: process.env.WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE,
+          enableSoftAssert: process.env.WOPEE_ENABLE_SOFT_ASSERT,
           // customTags: process.env.WOPEE_CUSTOM_TAGS,
         },
         isLandscape: true,
