@@ -133,3 +133,5 @@ dist
 !.env.example
 
 .tmp
+
+test-results

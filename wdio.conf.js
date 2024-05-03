@@ -1,8 +1,9 @@
+import "dotenv/config";
 import { join } from "node:path";
 
 export const config = {
   runner: "local",
-  specs: ["./test/test.e2e.js"],
+  specs: ["./tests/example.spec.js"],
   exclude: [],
   maxInstances: 1,
   capabilities: [
@@ -18,10 +19,10 @@ export const config = {
       }
     },
   ],
-  logLevel: "debug",
+  logLevel: "info",
   bail: 0,
   baseUrl: "http://localhost",
-  waitforTimeout: 30000,
+  waitforTimeout: 10000,
   connectionRetryTimeout: 120000,
   connectionRetryCount: 3,
   services: [
@@ -39,6 +40,7 @@ export const config = {
           pixelToPixelDiffTolerance: process.env.WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE,
           enableSoftAssert: process.env.WOPEE_ENABLE_SOFT_ASSERT,
           // customTags: process.env.WOPEE_CUSTOM_TAGS,
+          // ciBuildId: process.env.WOPEE_CI_BUILD_ID,
         },
         isLandscape: true,
       },
@@ -47,6 +49,6 @@ export const config = {
   framework: "mocha",
   reporters: ["spec"],
   mochaOpts: {
-    timeout: 60000,
+    timeout: 120000,
   },
 };
