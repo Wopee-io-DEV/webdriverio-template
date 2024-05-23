@@ -3,7 +3,7 @@ import { join } from "node:path";
 
 export const config = {
   runner: "local",
-  specs: ["./tests/example.spec.js"],
+  specs: ["./tests/example.spec.ts"],
   exclude: [],
   maxInstances: 1,
   capabilities: [

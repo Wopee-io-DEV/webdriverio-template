@@ -1,15 +1,16 @@
 {
-  "type": "module",
   "dependencies": {
-    "@wopee-io/wopee.wdio": "^3.0.0",
+    "@wopee-io/wopee.wdio": "^3.4.1",
     "@wdio/cli": "^8.36.0",
     "@wdio/local-runner": "^8.36.0",
     "@wdio/mocha-framework": "^8.36.0",
-    "@wdio/spec-reporter": "^8.36.0"
+    "@wdio/spec-reporter": "^8.36.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
   },
   "scripts": {
-    "wdio:browser": "wdio run wdio.conf.js",
-    "tests": "npm install && npm run wdio:browser",
+    "wdio:browser": "wdio run wdio.conf.ts",
+    "tests": "npm install && npm update && npm run wdio:browser",
     "tests-in-docker": "docker run --rm --name tests-wdio --env-file .env --volume ./:/home/pwuser/wdio --env GITHUB_TOKEN=$GITHUB_TOKEN ghcr.io/wopee-io/runtime:latest bash -c 'cd wdio && npm run tests'"
   }
 }
