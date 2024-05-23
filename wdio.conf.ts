@@ -21,7 +21,7 @@ export const config = {
   ],
   logLevel: "info",
   bail: 0,
-  baseUrl: "http://localhost",
+  baseUrl: "https://wopee.io",
   waitforTimeout: 10000,
   connectionRetryTimeout: 120000,
   connectionRetryCount: 3,
