@@ -12,14 +12,14 @@ describe('service browsers', () => {
   it('should open website and do the full page screenshot', async () => {
     await browser.startScenario('should open website and do the full page screenshot');
 
-    await browser.trackFullPageScreen('fullPage');
+    await browser.trackFullPageScreen({ stepName: 'fullPage' });
 
     await browser.stopScenario();
   });
   it('should open website and do the screen screenshot', async () => {
     await browser.startScenario('should open website and do the screen screenshot');
 
-    await browser.trackScreen('screen');
+    await browser.trackScreen({ stepName: 'screen' });
 
     await browser.stopScenario();
   });
@@ -29,7 +29,7 @@ describe('service browsers', () => {
     const element = await browser.$('//img[@alt="Wopee"]');
 
     if (await element.isExisting()) {
-      await browser.trackElement('element', element);
+      await browser.trackElement({ stepName: 'element', element: element });
     } else {
       console.log('Element does not exist');
     }
@@ -40,7 +40,7 @@ describe('service browsers', () => {
     await browser.startScenario('should open website and do the image tracking');
 
     const base64Image = await browser.takeScreenshot();
-    await browser.trackImage('image', base64Image);
+    await browser.trackImage({ stepName: 'image', imageBase64: base64Image });
 
     await browser.stopScenario();
   });
