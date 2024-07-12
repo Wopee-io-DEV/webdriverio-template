@@ -9,8 +9,7 @@
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "wdio:browser": "wdio run wdio.conf.ts",
-    "tests": "npm install && npm update && npm run wdio:browser",
-    "tests-in-docker": "docker run --rm --name tests-wdio --env-file .env --volume ./:/home/pwuser/wdio --env GITHUB_TOKEN=$GITHUB_TOKEN ghcr.io/wopee-io/runtime:latest bash -c 'cd wdio && npm run tests'"
+    "test": "npm run wdio",
+    "wdio": "wdio run wdio.conf.ts"
   }
 }

@@ -21,4 +21,6 @@ jobs:
                 WOPEE_CUSTOM_TAGS: custom-tag
                 WOPEE_ENABLE_SOFT_ASSERT: "true"
                 WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE: "0.1"
-            run: npm run tests
+            run: |
+              npm install --prefer-offline --no-audit
+              npm run test
