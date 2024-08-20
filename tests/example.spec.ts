@@ -1,4 +1,4 @@
-/// <reference types="../../../../build/index.d.ts" />
+/// <reference types="@wopee-io/wopee.wdio" />
 /// <reference types="@types/mocha" />
 import { browser } from '@wdio/globals';
 
