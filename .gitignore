@@ -129,7 +129,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-.env*
+!.github/workflows/.env
 !.env.example
 
 .tmp
