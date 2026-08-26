@@ -32,7 +32,9 @@ describe('service browsers', () => {
 
     await browser.setWindowSize(1920, 1080);
     await browser.url('https://wopee.io');
-    const element = await browser.$('.navbar__brand');
+    // WDIO 9 types `$()` as a chainable that does not narrow on await;
+    // `getElement()` is how v9 hands back a real element.
+    const element = await browser.$('.navbar__brand').getElement();
     await browser.trackElement({ stepName: 'element', element: element });
 
     await browser.stopScenario();
