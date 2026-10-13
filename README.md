@@ -56,6 +56,6 @@ Install `@wopee-io/wopee.wdio`, add the service to `wdio.conf.ts` and call the t
 ## Troubleshooting
 
 - **`apiKey: missing`**: `.env` has no `WOPEE_API_KEY`. Paste a key from Commander › More › Settings › API Keys.
-- **`apiUrl: must be an absolute URL`**: `.env` still contains `{…}` placeholders, which happens when you copied the public template instead of using the repository Wopee.io created. Fill in `WOPEE_API_URL` (`https://api.wopee.io`), `WOPEE_PROJECT_UUID` (the `projectId` in the Commander address bar) and `WOPEE_PROJECT_URL` (your app).
-- **`Wopee API rejected the request: 401 Unauthorized`**: the API key belongs to another project or was deleted. Generate a new key in this project.
+- **`put-your-project-uuid-here` in `.env`**: you copied the public template instead of using the repository Wopee.io created. Fill in `WOPEE_PROJECT_UUID` (the `projectId` in the Commander address bar) and `WOPEE_PROJECT_URL` (your app).
+- **`Wopee API rejected the request: 401 Unauthorized`**: the API key usually belongs to another Wopee.io instance or project, or was deleted. Generate a new key in this project. `WOPEE_API_URL` is only for self-hosted instances; leave it out for cmd.wopee.io (the default is `https://api.wopee.io`).
 - **Rotated or narrow screenshots**: keep `isLandscape: false` in `wdio.conf.ts`; `true` is meant for mobile devices in landscape.
