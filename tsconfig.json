@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "types": ["node", "@wdio/globals/types"]
+    "types": ["node", "@wdio/globals/types", "@wdio/mocha-framework", "@wopee-io/wopee.wdio"]
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules"]

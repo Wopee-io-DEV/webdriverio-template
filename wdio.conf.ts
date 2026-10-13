@@ -1,26 +1,25 @@
 import "dotenv/config";
 
-export const config = {
+export const config: WebdriverIO.Config = {
   runner: "local",
-  specs: ["./tests/example.spec.ts"],
-  exclude: [],
+  specs: ["./test/specs/**/*.ts"],
   maxInstances: 1,
   capabilities: [
     {
       browserName: "chrome",
       "goog:chromeOptions": {
         args: [
+          "--headless=new",
+          "--window-size=1280,900",
           "--no-sandbox",
-          "--disable-infobars",
-          "--headless",
           "--disable-gpu",
         ],
       },
     },
   ],
-  logLevel: "info",
+  logLevel: "warn",
   bail: 0,
-  baseUrl: "https://wopee.io",
+  baseUrl: process.env.WOPEE_PROJECT_URL || "https://wopee.io",
   waitforTimeout: 10000,
   connectionRetryTimeout: 120000,
   connectionRetryCount: 3,
@@ -32,14 +31,8 @@ export const config = {
           apiUrl: process.env.WOPEE_API_URL,
           apiKey: process.env.WOPEE_API_KEY,
           projectUuid: process.env.WOPEE_PROJECT_UUID,
-          // branchName: process.env.WOPEE_BRANCH_NAME,
-          pixelToPixelDiffTolerance:
-            process.env.WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE,
-          enableSoftAssert: process.env.WOPEE_ENABLE_SOFT_ASSERT,
-          // customTags: process.env.WOPEE_CUSTOM_TAGS,
-          // ciBuildId: process.env.WOPEE_CI_BUILD_ID,
         },
-        isLandscape: true,
+        isLandscape: false,
       },
     ],
   ],
@@ -48,4 +41,34 @@ export const config = {
   mochaOpts: {
     timeout: 120000,
   },
+  before() {
+    // Waits until web fonts and images are loaded, so a screenshot never catches a half-rendered page.
+    browser.addCommand("pageReady", async function (this: WebdriverIO.Browser) {
+      await this.waitUntil(
+        () => this.execute(() => document.readyState === "complete"),
+        { timeout: 30000 },
+      );
+      await this.execute(async () => {
+        const images = [...document.images].filter(
+          (img) => img.complete || img.loading !== "lazy",
+        );
+        const ready = Promise.all([
+          document.fonts.ready,
+          ...images.map((img) => img.decode().catch(() => {})),
+        ]);
+        await Promise.race([
+          ready,
+          new Promise((resolve) => setTimeout(resolve, 10000)),
+        ]);
+      });
+    });
+  },
 };
+
+declare global {
+  namespace WebdriverIO {
+    interface Browser {
+      pageReady(): Promise<void>;
+    }
+  }
+}
