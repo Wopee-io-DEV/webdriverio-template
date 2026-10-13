@@ -4,7 +4,7 @@ This repository is a WebdriverIO project connected to Wopee.io. It contains one 
 
 ## Run in GitHub Actions
 
-No setup needed. When Wopee.io created this repository it stored the API key as the `WOPEE_API_KEY` secret and wrote the project settings to `.github/workflows/.env`.
+No setup needed. When Wopee.io created this repository it stored the `WOPEE_API_KEY` secret and the `WOPEE_PROJECT_UUID`, `WOPEE_PROJECT_URL` and `WOPEE_API_URL` variables (Settings › Secrets and variables › Actions), and the workflow uses them.
 
 1. Open the **Actions** tab and select **Run WebdriverIO tests**.
 2. Click **Run workflow**.
@@ -36,7 +36,7 @@ Open your project in [Commander](https://cmd.wopee.io) › **Runs**. Each run is
 
 ## Make it yours
 
-- **Your app:** the sample opens `WOPEE_PROJECT_URL`, the App URL you entered when you created the project. Change it in `.env` (local runs) and in `.github/workflows/.env` (GitHub Actions).
+- **Your app:** the sample opens `WOPEE_PROJECT_URL`, the App URL you entered when you created the project. Change it in `.env` for local runs; for GitHub Actions, change the App URL in Commander or the `WOPEE_PROJECT_URL` variable in Settings › Secrets and variables › Actions › Variables.
 - **Add a check:** after an interaction, wait for the page and track it. The sample `test/specs/wopee.spec.ts` has a commented example:
 
   ```typescript
