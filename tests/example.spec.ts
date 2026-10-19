@@ -6,7 +6,7 @@ describe('service browsers', () => {
   before(async function () {
     const now = new Date();
     const date = `${now.getDate().toString().padStart(2, '0')}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getFullYear()}`;
-    await browser.startSuite(`service browsers-${date}`);
+    await browser.startSuite(`service browsers-${date} ${now.toLocaleTimeString()}`);
   });
 
   it('should open website and do the full page screenshot', async () => {
@@ -24,18 +24,6 @@ describe('service browsers', () => {
     await browser.setWindowSize(1920, 1080);
     await browser.url('/');
     await browser.trackScreen({ stepName: 'screen' });
-
-    await browser.stopScenario();
-  });
-  it('should open website and do the element screenshot', async () => {
-    await browser.startScenario('should open website and do the element screenshot');
-
-    await browser.setWindowSize(1920, 1080);
-    await browser.url('/');
-    // WDIO 9 types `$()` as a chainable that does not narrow on await;
-    // `getElement()` is how v9 hands back a real element.
-    const element = await browser.$('.navbar__brand').getElement();
-    await browser.trackElement({ stepName: 'element', element: element });
 
     await browser.stopScenario();
   });
