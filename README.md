@@ -52,6 +52,7 @@ A visual difference is reported in Commander; it does not fail the WebdriverIO t
   `trackScreen` captures the viewport, `trackFullPageScreen` the whole page, `trackElement` one element (`element: await browser.$('<selector from your app>').getElement()`). Every `stepName` in a scenario gets its own baseline.
 
 - **More tests:** add `*.spec.ts` files under `tests/` and list them in `specs` in `wdio.conf.ts`. `tests/example.spec.ts` shows what every test needs: start a suite and a scenario, track, stop the scenario.
+- **Environments:** `WOPEE_BROWSER`, `WOPEE_OS`, `WOPEE_DEVICE` and `WOPEE_VIEWPORT` label each step, and every combination keeps its own baseline, so a run on Windows is not compared with one on Linux. Set them in `.env`, or in Commander › More › Settings › Environment Variables for runs from Commander. `@wopee-io/wopee.wdio` 6.0.1 is the first to send the `os` label.
 - **Desktop screenshots:** keep `isLandscape: false` in `wdio.conf.ts`; `true` is for mobile devices in landscape and rotates desktop screenshots.
 
 ## Add Wopee.io to an existing WebdriverIO project

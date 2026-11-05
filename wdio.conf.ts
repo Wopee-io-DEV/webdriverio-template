@@ -36,6 +36,11 @@ export const config = {
           pixelToPixelDiffTolerance:
             process.env.WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE,
           enableSoftAssert: process.env.WOPEE_ENABLE_SOFT_ASSERT,
+          // Each label keeps its own baseline, so runs on different environments are not compared with each other.
+          browser: process.env.WOPEE_BROWSER || undefined,
+          os: process.env.WOPEE_OS || undefined,
+          device: process.env.WOPEE_DEVICE || undefined,
+          viewport: process.env.WOPEE_VIEWPORT || undefined,
           // customTags: process.env.WOPEE_CUSTOM_TAGS,
           // ciBuildId: process.env.WOPEE_CI_BUILD_ID,
         },
