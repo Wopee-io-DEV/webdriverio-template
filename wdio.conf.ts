@@ -32,6 +32,8 @@ export const config = {
           apiUrl: process.env.WOPEE_API_URL,
           apiKey: process.env.WOPEE_API_KEY,
           projectUuid: process.env.WOPEE_PROJECT_UUID,
+          screenshotValidationEnabled:
+            process.env.WOPEE_SCREENSHOT_VALIDATION_ENABLED || undefined,
           // branchName: process.env.WOPEE_BRANCH_NAME,
           pixelToPixelDiffTolerance:
             process.env.WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE,
